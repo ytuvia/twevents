@@ -1,0 +1,17 @@
+{
+  "name": "twsub",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app/index.js",
+  "dependencies": {
+    "twitter": "~1.7.0",
+    "mongoose": "~4.9.0",
+    "express": "~4.15.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}
