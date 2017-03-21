@@ -1,5 +1,6 @@
 var Twitter = require('twitter');
 var graphql = require('./graphql');
+var sqs = require('./sqs');
 
 function listen(cb){
 	var client = new Twitter({
@@ -10,8 +11,13 @@ function listen(cb){
 	});
 	var stream = client.stream('statuses/filter', {track: 'javascript'});
 	stream.on('data', function(event) {
-	  graphql.execute(event, function(result){
-	  	console.log(result);
+	  sqs.sendMessage(event, function(err, result){
+	  	if(err){
+	  		throw err;
+	  	}
+	  	graphql.execute(event, function(result){
+		  	console.log(result);
+		});
 	  });
 	});
 	 

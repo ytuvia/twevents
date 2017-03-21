@@ -1,4 +1,5 @@
 var twitterAPI = require('twitter');
+var sqs = require('./sqs');
 import _ from 'lodash';
 
 var twitter = new twitterAPI({
@@ -10,7 +11,7 @@ var twitter = new twitterAPI({
 
 export const getUser      = (screen_name)       => returnPromise('users/show', { screen_name: screen_name}, 'location');
 export const getTweets    = (user_id, count)    => returnPromise('statuses/user_timeline', { user_id, count });
-export const getTweet     = (id)                => returnPromise('statuses/show', { id });
+export const getTweetById     = (id)                => returnPromise('statuses/show', { id });
 export const getRetweets  = (id, count)         => returnPromise('statuses/retweets', { id, count });
 export const searchTweets = (queryParams)       => returnPromise("search/tweets", Object.assign({result_type: 'recent'}, queryParams), 'statuses');
 
@@ -25,9 +26,24 @@ const returnPromise = (endpoint, parameters, resultPath = null) => {
           reject(error);
         }
         else {
+          console.log(result);
           resolve( resultPath !== null ? _.get(result, resultPath) : result );
         }
       }
     )
+  });
+};
+
+export const getQueuedTweet = () => {
+  return new Promise((resolve, reject) => {
+    sqs.reciveMessage(function(err, result){
+      if (err) {
+          reject(err);
+        }
+        else {
+          var ret = JSON.parse(result.Messages[0].Body);
+          resolve(ret);
+        }
+    });
   });
 };
