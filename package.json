@@ -11,6 +11,8 @@
     "mongoose": "~4.9.0",
     "net": "^1.0.2",
     "node-fetch": "^1.6.3",
+    "s3-streamlogger": "^1.0.0",
+    "sqs-consumer": "^3.5.0",
     "tls": "0.0.1",
     "twitter": "~1.7.0",
     "winston": "~2.3.1",

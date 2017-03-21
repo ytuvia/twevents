@@ -1,6 +1,8 @@
 var Twitter = require('twitter');
+var twittercli = require('./twitter-cli');
 var graphql = require('./graphql');
-var sqs = require('./sqs');
+var logger = require('./logger');
+//var sqs = require('./sqs');
 
 function listen(cb){
 	var client = new Twitter({
@@ -9,16 +11,12 @@ function listen(cb){
 	  access_token_key: '18587521-WFW5L8gklunEh2mvQro0LG94OFBd5DDMwhdXocDBQ',
 	  access_token_secret: '7E5b3HKXTmhGIt4kZr1rnWEaChbYAqs2CZFZccUNljgvm'
 	});
-	var stream = client.stream('statuses/filter', {track: 'javascript'});
+	var stream = client.stream('statuses/filter', {track: 'Donald Trump'});
 	stream.on('data', function(event) {
-	  sqs.sendMessage(event, function(err, result){
-	  	if(err){
-	  		throw err;
-	  	}
-	  	graphql.execute(event, function(result){
-		  	console.log(result);
+		twittercli.addTweet(event);
+		graphql.execute(event.id, function(result){
+		  	logger.info(result);
 		});
-	  });
 	});
 	 
 	stream.on('error', function(error) {

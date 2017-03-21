@@ -1,4 +1,6 @@
-var AWS = require('aws-sdk');
+const consumer = require('sqs-consumer');
+const AWS = require('aws-sdk');
+
 AWS.config.loadFromPath('./aws.config.json');
 
 // Create an SQS service object
@@ -43,7 +45,25 @@ var reciveMessage = function(cb){
 	});
 }
 
+var listen = function(cb){
+	const app = consumer.create({
+	  queueUrl: queueURL,
+	  handleMessage: (message, done) => {
+	    done();
+	    cb(null, message.Body);
+	  },
+	  sqs: new AWS.SQS()
+	});
+
+	app.on('error', (err) => {
+	  cb(err.message);
+	});
+
+	app.start();
+}
+
 module.exports = {
 	sendMessage: sendMessage,
-	reciveMessage: reciveMessage
+	reciveMessage: reciveMessage,
+	listen: listen
 }

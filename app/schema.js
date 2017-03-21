@@ -111,7 +111,13 @@ let twitterType = new GraphQLObjectType({
   fields: {
     tweet: {
       type: TweetType,
-      resolve: (_) => twitterCli.getQueuedTweet()
+      args: {
+        id: {
+          type: new GraphQLNonNull(GraphQLString),
+          description: 'Unique ID of tweet'
+        }
+      },
+      resolve: (_, { id: tweetId }) => twitterCli.getQueuedTweet(tweetId)
     },
     search: {
       type: viewerType,

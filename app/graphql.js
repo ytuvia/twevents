@@ -3,17 +3,19 @@ const { Schema } = require('./schema');
 
 
 function execute(data, cb){
-	var query = `{tweet{      
+	var query = `{tweet(id:"${data}"){      
       text,
       user {
-        name
+        name,
+        location,
+        weather
       }
 	}}`;
 	graphql(Schema, query).then((response) => {
 		cb(response);
 	})
 	.catch((error) => {
-	    console.log(error);
+		throw error;
 	});
 }
 
