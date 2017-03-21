@@ -1,21 +1,17 @@
 var Twitter = require('twitter');
-var db = require('./db');
+var graphql = require('./graphql');
 
 function listen(cb){
 	var client = new Twitter({
-	  consumer_key: '',
-	  consumer_secret: '',
-	  access_token_key: '',
-	  access_token_secret: ''
+	  consumer_key: 'syrkIXRaJ4vx2eKGatihkD7cl',
+	  consumer_secret: 'DayPwyKgGlssmaIsoU4Ur2H996zkqhoIGlS7BOfh48JAUsiXOO',
+	  access_token_key: '18587521-WFW5L8gklunEh2mvQro0LG94OFBd5DDMwhdXocDBQ',
+	  access_token_secret: '7E5b3HKXTmhGIt4kZr1rnWEaChbYAqs2CZFZccUNljgvm'
 	});
 	var stream = client.stream('statuses/filter', {track: 'javascript'});
 	stream.on('data', function(event) {
-	  console.log(event && event.text);
-	  db.save({
-	  	event: event,
-	  	text: event.text
-	  }, function(err){
-	  	if (err) {throw err;}
+	  graphql.execute(event, function(result){
+	  	console.log(result);
 	  });
 	});
 	 

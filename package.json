@@ -4,12 +4,27 @@
   "description": "",
   "main": "app/index.js",
   "dependencies": {
-    "twitter": "~1.7.0",
+    "express": "~4.15.2",
+    "fs": "0.0.1-security",
+    "graphql": "~0.9.1",
     "mongoose": "~4.9.0",
-    "express": "~4.15.2"
+    "net": "^1.0.2",
+    "node-fetch": "^1.6.3",
+    "tls": "0.0.1",
+    "twitter": "~1.7.0",
+    "winston": "~2.3.1",
+    "winston-s3": "~1.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.2.2",
+    "coffee-loader": "^0.7.3",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
+  },
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
