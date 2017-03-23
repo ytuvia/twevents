@@ -1,0 +1,21 @@
+{
+	"port": 8080,
+	"bodyLimit": "100kb",
+	"corsHeaders": ["Link"],
+	"listener":{
+		"filter": "Donald trump",
+		"format": "{      
+	      text,
+	      user {
+	        name,
+	        location,
+	        weather
+	      }
+		}"
+	},
+	"AWS":{
+		"bucket": "streams.twitter",
+		"access_key_id": "AKIAJCKRPHPIJNWOM43Q",
+		"secret_access_key": "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"
+	}
+}
