@@ -1,9 +1,6 @@
 import { fs } from 'fs'
 import { config } from './config.json'
 
-let validate;
-let update;
-
 class Config {
 	constructor(){
 		this.port = config.port;
@@ -13,10 +10,26 @@ class Config {
 		this.filter = config.filter;
 	}
 
-	async update: (data, cb) => {
-		fs.writeFile('./config.json', data, (err) => { 
-			return cb(err, data);
-		});
+	update: (data) => {
+		return new Promise((resolve, reject) => {
+			fs.writeFile('./config.json', data, (err) => { 
+				if(err){
+					reject(err);
+				}else{
+					resolve(data);
+				}
+			});
+		})
+	}
+
+	get: () => {
+		return new Promise((resolve, reject) => {
+			if(config){
+				resolve(config);
+			}else{
+				reject('No config availble');
+			}
+		}) 
 	}
 }
 

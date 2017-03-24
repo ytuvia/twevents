@@ -17,5 +17,11 @@
 		"bucket": "streams.twitter",
 		"access_key_id": "AKIAJCKRPHPIJNWOM43Q",
 		"secret_access_key": "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"
+	},
+	"twitter": {
+		"consumer_key": "syrkIXRaJ4vx2eKGatihkD7cl",
+	  	"consumer_secret": "DayPwyKgGlssmaIsoU4Ur2H996zkqhoIGlS7BOfh48JAUsiXOO",
+	  	"access_token_key": "18587521-WFW5L8gklunEh2mvQro0LG94OFBd5DDMwhdXocDBQ",
+	  	"access_token_secret": "7E5b3HKXTmhGIt4kZr1rnWEaChbYAqs2CZFZccUNljgvm"
 	}
 }
