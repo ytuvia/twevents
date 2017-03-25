@@ -4,14 +4,7 @@
 	"corsHeaders": ["Link"],
 	"listener":{
 		"filter": "Donald trump",
-		"format": "{      
-	      text,
-	      user {
-	        name,
-	        location,
-	        weather
-	      }
-		}"
+		"format": "{text,user {name,location,weather}}"
 	},
 	"AWS":{
 		"bucket": "streams.twitter",

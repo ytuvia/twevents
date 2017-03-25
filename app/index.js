@@ -4,9 +4,14 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import stream from './twstream';
 import config from './config.json';
+import middleware from './middleware';
+import api from './api';
 
 
-stream.listen();
+//stream.listen();
+
+let app = express();
+app.server = http.createServer(app);
 
 // 3rd party middleware
 app.use(cors({

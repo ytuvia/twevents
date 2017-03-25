@@ -10,7 +10,7 @@ class Config {
 		this.filter = config.filter;
 	}
 
-	update: (data) => {
+	update(data){
 		return new Promise((resolve, reject) => {
 			fs.writeFile('./config.json', data, (err) => { 
 				if(err){
@@ -22,7 +22,7 @@ class Config {
 		})
 	}
 
-	get: () => {
+	get(){
 		return new Promise((resolve, reject) => {
 			if(config){
 				resolve(config);

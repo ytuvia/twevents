@@ -1,8 +1,9 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
-import { config } from './config';
+import { Config } from '../config';
 
-export default ({ config }) => {
+export default () => {
+	let config = new Config();
 	let api = Router();
 
 	api.get('/', (req, res) => {
@@ -13,17 +14,17 @@ export default ({ config }) => {
 		let body = req.body;
 		config.update(body).then((result)=>{
 			res.json(data);
-		}).catch(err){
+		}).catch((err)=>{
 			res.status(500).send('server error');
-		}
+		})
 	});
 
 	api.get('/configure', (req, res) => {
 		config.get().then((result) => {
 			res.json(data);
-		}).catch(err){
+		}).catch((err) => {
 			res.status(500).send('server error');
-		}
+		})
 	})
 
 	return api;
