@@ -19,6 +19,7 @@ function listen(cb){
 	});
 	 
 	stream.on('error', function(error) {
+		console.log(error);
 	  throw error;
 	});
 }

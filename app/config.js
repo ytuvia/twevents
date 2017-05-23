@@ -25,6 +25,13 @@ class Config {
 	get(){
 		return new Promise((resolve, reject) => {
 			if(config){
+				config.twitter.consumer_key = process.env.TW_CONSUMER_KEY;
+				config.twitter.consumer_secret =  process.env.TW_CONSUMER_SECRET;
+				config.twitter.access_token_key = process.env.TW_ACCESS_TOKEN_KEY;
+				config.twitter.access_token_secret = process.env.TW_ACCESS_TOKEN_SECRET;
+				config.AWS.access_key_id = process.env.AWS_ACCESS_KEY_ID;
+				config.AWS.secret_access_key = process.env.AWS_SECRET_ACCESS_KEY;
+
 				resolve(config);
 			}else{
 				reject('No config availble');

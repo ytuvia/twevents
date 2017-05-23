@@ -8,8 +8,8 @@ import middleware from './middleware';
 import api from './api';
 
 
-//stream.listen();
-
+stream.listen();
+/*
 let app = express();
 app.server = http.createServer(app);
 
@@ -31,3 +31,4 @@ app.use('/api', api({ config }));
 app.server.listen(process.env.PORT || config.port);
 
 console.log(`Started on port ${app.server.address().port}`);
+*/

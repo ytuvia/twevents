@@ -22,14 +22,18 @@
     "winston-s3": "~1.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
     "babel-preset-env": "^1.2.2",
+    "babel-preset-latest": "^6.24.1",
     "coffee-loader": "^0.7.3",
+    "nodemon": "^1.11.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
+    "start": "nodemon app/index.js --exec babel-node --presets latest",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

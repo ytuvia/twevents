@@ -5,5 +5,12 @@
 	"listener":{
 		"filter": "Donald trump",
 		"format": "{text,user {name,location,weather}}"
+	},
+	"twitter": {
+		//in env variable
+	},
+	"AWS": {
+		"bucket": "streams.twitter"
+		//rest in env variable
 	}
 }
